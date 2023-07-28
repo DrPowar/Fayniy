@@ -18,7 +18,7 @@ html {
 }
 
 body {
-    overflow-x: hidden;
+
 }
 
 .order-btn {
@@ -38,7 +38,6 @@ body {
 .index_footer {
     background-color: lightgrey;
     padding-bottom: 70px;
-    width: 100vw;
 }
 
 .logo {
@@ -47,6 +46,16 @@ body {
     margin-left: 5px;
 }
 
-.video {
-    width: 100vw;
+.video-banner {
+    width: 100%;
+}
+
+.card-hover-body {
+  overflow: hidden;
+}
+.card-hover-body img {
+  transition: all 0.15s linear;
+}
+.card-hover:hover .card-hover-body img {
+  scale: 1.05;
 }
