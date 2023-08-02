@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using CoursesStore.Models;
 
 namespace CoursesStore.Data
 {
-    public class CoursesStoreContext : DbContext
+    public class CoursesStoreContext : IdentityDbContext<IdentityUser>
     {
-        public CoursesStoreContext (DbContextOptions<CoursesStoreContext> options)
+        public CoursesStoreContext(DbContextOptions<CoursesStoreContext> options)
             : base(options)
         {
         }
