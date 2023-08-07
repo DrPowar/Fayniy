@@ -21,6 +21,6 @@ namespace CoursesStore.Models
         [DataType(DataType.Duration)]
         public TimeSpan Duration { get; set; }
 
-        public string ImageUrl { get; set; }
+        public byte[]? CourseImage { get; set; }
     }
 }

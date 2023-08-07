@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using CoursesStore.Data;
 using CoursesStore.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.WebSockets;
 
 namespace CoursesStore
 {
@@ -22,7 +23,7 @@ namespace CoursesStore
             //    .AddEntityFrameworkStores<CoursesStoreContext>()
             //    .AddDefaultTokenProviders();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<CoursesStoreContext>()
                 .AddDefaultTokenProviders();
@@ -41,6 +42,7 @@ namespace CoursesStore
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddHttpContextAccessor();
+            builder.Services.AddRazorPages();
 
             var app = builder.Build();
 
@@ -69,6 +71,7 @@ namespace CoursesStore
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Courses}/{action=Index}/{id?}");
+            app.MapRazorPages();
 
             app.UseRequestLocalization("uk-UA");
 
@@ -89,7 +92,7 @@ namespace CoursesStore
 
             using (var scope = app.Services.CreateScope())
             {
-                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
                 string name = "admin";
 
@@ -97,8 +100,10 @@ namespace CoursesStore
 
                 if(await userManager.FindByNameAsync(name) == null)
                 {
-                    var user = new IdentityUser();
+                    var user = new ApplicationUser();
                     user.UserName = name;
+                    user.Password = password;
+                    user.EmailConfirmed = true;
 
                     await userManager.CreateAsync(user, password);
 

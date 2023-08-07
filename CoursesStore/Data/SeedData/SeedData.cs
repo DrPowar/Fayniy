@@ -28,32 +28,28 @@ public static class SeedData
                     Name = "Test course 1",
                     Description = "Test description 1",
                     Duration = TimeSpan.FromHours(2),
-                    Price = 4.99m,
-                    ImageUrl = "https://sproutsocial.com/insights/social-media-image-sizes-guide/"
+                    Price = 4.99m
                 },
                 new Course
                 {
                     Name = "Test course 2",
                     Description = "Test description 2",
                     Duration = TimeSpan.FromHours(3),
-                    Price = 5.99m,
-                    ImageUrl = "https://sproutsocial.com/insights/social-media-image-sizes-guide/"
+                    Price = 5.99m
                 },
                 new Course
                 {
                     Name = "Test course 3",
                     Description = "Test description 3",
                     Duration = TimeSpan.FromHours(1.5),
-                    Price = 6.99m,
-                    ImageUrl = "https://sproutsocial.com/insights/social-media-image-sizes-guide/"
+                    Price = 6.99m
                 },
                 new Course
                 {
                     Name = "Test course 4",
                     Description = "Test description 4",
                     Duration = TimeSpan.FromHours(2.3),
-                    Price = 7.99m,
-                    ImageUrl = "https://sproutsocial.com/insights/social-media-image-sizes-guide/"
+                    Price = 7.99m
                 }
             );
             context.SaveChanges();

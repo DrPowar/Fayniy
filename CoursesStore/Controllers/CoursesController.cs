@@ -3,16 +3,19 @@ using CoursesStore.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace CoursesStore.Controllers
 {
     public class CoursesController : Controller
     {
         private readonly CoursesStoreContext _context;
+        private readonly IWebHostEnvironment _appEnvironment;
 
-        public CoursesController(CoursesStoreContext context)
+        public CoursesController(CoursesStoreContext context, IWebHostEnvironment appEnvironment)
         {
             _context = context;
+            _appEnvironment = appEnvironment;
         }
         
         public async Task<IActionResult> Index(string searchString)
@@ -53,7 +56,7 @@ namespace CoursesStore.Controllers
             return View(course);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         // GET: Courses/Create
         public IActionResult Create()
         {
@@ -63,13 +66,21 @@ namespace CoursesStore.Controllers
         // POST: Courses/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Price,Duration,ImageUrl")] Course course)
+        public async Task<IActionResult> Create(CourseViewModel cvm)
         {
-            if (ModelState.IsValid)
+            Course course = new Course { Name = cvm.Name };
+            if (ModelState.IsValid && cvm.CourseImage != null)
             {
+                byte[] imageData = null;
+                using (var binaryReader = new BinaryReader(cvm.CourseImage.OpenReadStream()))
+                {
+                    imageData = binaryReader.ReadBytes((int)cvm.CourseImage.Length);
+                }
+                course.CourseImage = imageData;
+
                 _context.Add(course);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -77,7 +88,7 @@ namespace CoursesStore.Controllers
             return View(course);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         // GET: Courses/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -97,7 +108,7 @@ namespace CoursesStore.Controllers
         // POST: Courses/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,Duration")] Course course)
@@ -131,7 +142,7 @@ namespace CoursesStore.Controllers
         }
 
         // GET: Courses/Delete/5
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Course == null)
@@ -150,7 +161,7 @@ namespace CoursesStore.Controllers
         }
 
         // POST: Courses/Delete/5
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -169,7 +180,7 @@ namespace CoursesStore.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         private bool CourseExists(int id)
         {
             return (_context.Course?.Any(e => e.Id == id)).GetValueOrDefault();
