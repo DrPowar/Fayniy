@@ -13,6 +13,5 @@ namespace CoursesStore.Data
 
         public DbSet<CoursesStore.Models.Course> Course { get; set; } = default!;
         public DbSet<CoursesStore.Models.ApplicationUser> ApplicationUser { get; set; } = default!;
-        //public DbSet<CoursesStore.Models.CourseViewModel> CourseViewModel { get; set;} = default!;
     }
 }

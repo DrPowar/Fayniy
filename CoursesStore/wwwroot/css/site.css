@@ -59,3 +59,20 @@ body {
 .card-hover:hover .card-hover-body img {
   scale: 1.05;
 }
+
+.header-main-div{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+
+.login-div {
+    padding: 5% 35% 5% 35%;
+}
+
+.login_form {
+    padding: 30px;
+    background-color: white;
+    border-radius: 20px;
+    border: 2px solid lightgrey;
+}

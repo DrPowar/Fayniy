@@ -10,8 +10,9 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @Html.AntiForgeryToken()
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -33,8 +34,8 @@
                 <span asp-validation-for="Duration" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label"></label>
-                <input type="file" name="CourseImage" accept=".jpg, .jpeg, .png" />
+                <label class="control-label">Course Image</label>
+                <input type="file" name="ImageFile" accept=".jpg, .jpeg, .png" />
                 <span class="text-danger"></span>
             </div>
             <div class="form-group">

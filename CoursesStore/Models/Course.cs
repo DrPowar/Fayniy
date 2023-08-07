@@ -21,6 +21,7 @@ namespace CoursesStore.Models
         [DataType(DataType.Duration)]
         public TimeSpan Duration { get; set; }
 
-        public byte[]? CourseImage { get; set; }
+        [NotMapped]
+        public IFormFile? ImageFile { get; set; }
     }
 }

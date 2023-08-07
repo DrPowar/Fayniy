@@ -1,6 +1,7 @@
 ﻿using CoursesStore.Data;
 using CoursesStore.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -69,18 +70,21 @@ namespace CoursesStore.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CourseViewModel cvm)
+        public async Task<IActionResult> Create(Course course)
         {
-            Course course = new Course { Name = cvm.Name };
-            if (ModelState.IsValid && cvm.CourseImage != null)
+            if (ModelState.IsValid)
             {
-                byte[] imageData = null;
-                using (var binaryReader = new BinaryReader(cvm.CourseImage.OpenReadStream()))
+                // Зберігаємо завантажене зображення у папці wwwroot/css/Image/
+                if (course.ImageFile != null)
                 {
-                    imageData = binaryReader.ReadBytes((int)cvm.CourseImage.Length);
+                    string uploadsFolder = Path.Combine(_appEnvironment.WebRootPath, "Graphics", "Course");
+                    string uniqueFileName = course.ImageFile.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await course.ImageFile.CopyToAsync(fileStream);
+                    }
                 }
-                course.CourseImage = imageData;
-
                 _context.Add(course);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

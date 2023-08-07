@@ -25,10 +25,6 @@ namespace CoursesStore.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<byte[]>("CourseImage")
-                        .IsRequired()
-                        .HasColumnType("longblob");
-
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
 
@@ -45,7 +41,7 @@ namespace CoursesStore.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Course");
+                    b.ToTable("Course", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
