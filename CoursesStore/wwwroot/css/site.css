@@ -67,7 +67,9 @@ body {
 }
 
 .login-div {
-    padding: 5% 35% 5% 35%;
+    padding: 30px;
+    max-width: 500px;
+    margin: auto;
 }
 
 .login_form {
