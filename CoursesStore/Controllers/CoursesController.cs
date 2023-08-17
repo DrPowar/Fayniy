@@ -1,10 +1,8 @@
 ﻿using CoursesStore.Data;
 using CoursesStore.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace CoursesStore.Controllers
 {
@@ -18,7 +16,7 @@ namespace CoursesStore.Controllers
             _context = context;
             _appEnvironment = appEnvironment;
         }
-        
+
         public async Task<IActionResult> Index(string searchString)
         {
             if (_context.Course == null)
@@ -27,7 +25,7 @@ namespace CoursesStore.Controllers
             }
 
             var courses = from m in _context.Course
-                         select m;
+                          select m;
 
             if (!String.IsNullOrEmpty(searchString))
             {

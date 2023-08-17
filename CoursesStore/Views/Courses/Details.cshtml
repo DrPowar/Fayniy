@@ -3,40 +3,83 @@
 @{
     ViewData["Title"] = "Details";
 }
-
-<h1>Details</h1>
-
-<div>
-    <h4>Course</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Duration)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Duration)
-        </dd>
-    </dl>
+@*<div class="container-fluid">
+    <div class="container m-lg-5">
+        <div class="d-flex flex-row">
+            <div class="m-auto d-inline-block">
+                <img src="~/Graphics/Course/Swipe.png" style="max-width: 500px; height: auto;" class="img-fluid" alt="Name">
+            </div>
+            <div class="col m-auto d-inline-block">
+                <h1>Prikol</h1>
+                <h1>Prikol 2</h1>
+                <h1>Prikol 3</h1>
+                <h1>Prikol 4</h1>
+            </div>
+        </div>
+    </div>
 </div>
+
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
+</div>*@
+
+<style>
+    body {
+        background-color: #161a1e;
+    }
+</style>
+
+<div class="card border-0" style="background-color: #161a1e">
+    <video id="videoPlayer" src="~/Graphics/Design/Swipe.mp4" muted loop class="card-img" style="max-height: 44vw; object-fit: cover;"></video>
+    <div class="card-img-overlay text-light container d-flex flex-column justify-content-center video-items-div">
+        <div class="buttons d-flex justify-content-center play-pause-button">
+            <img id="playButton" src="~/Graphics/Design/Play.png" alt="Play" style="cursor: pointer; width: 50px; height: 50px;">
+            <img id="pauseButton" src="~/Graphics/Design/Stop.png" alt="Pause" style="display: none; cursor: pointer; width: 50px; height: 50px;">
+        </div>
+    </div>
 </div>
+
+<div class="row" style="margin: 5% 0% 10% 0%; color: #e2e3ea">
+    <div class="m-auto w-50 p-1">
+        <div class="">
+            <div class="row g-0">
+                <div class="col-md-7 text-center d-flex align-items-center justify-content-center">
+                    @*<img class="d-block" src="~/Graphics/Course/Swipe_no_background - Copy.png" width="45%" alt="Name" style="min-width: 45%;">*@
+                    <video src="~/Graphics/Course/Swipe.mp4" muted loop autoplay class="card-img" style="width: 100%;"></video>
+                </div>
+                <div class="col-md-5">
+                    <div class="card-body" style="margin-left: 5%;">
+                        <h1 class="card-text">Swipe pack</h1>
+                        <h2>99.00$</h2>
+                        <a class="btn btn-outline-danger btn-lg w-50" href="#" role="button" style="margin-bottom: 5%;"> Buy</a>
+                        <p class="card-text"><b>Description: </b>A set of visual effects from the swipe project.</p>
+                        <p class="card-text"><b>Effects Count: </b>50</p>
+                        <p class="card-text">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    const video = document.getElementById('videoPlayer');
+    const playButton = document.getElementById('playButton');
+    const pauseButton = document.getElementById('pauseButton');
+
+    playButton.addEventListener('click', function () {
+        video.play();
+        playButton.style.display = 'none';
+        pauseButton.style.display = 'inline';
+    });
+
+    pauseButton.addEventListener('click', function () {
+        video.pause();
+        pauseButton.style.display = 'none';
+        playButton.style.display = 'inline';
+    });
+</script>
+
