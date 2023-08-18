@@ -62,9 +62,7 @@ namespace CoursesStore.Controllers
             return View();
         }
 
-        // POST: Courses/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -72,12 +70,17 @@ namespace CoursesStore.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Зберігаємо завантажене зображення у папці wwwroot/css/Image/
                 if (course.ImageFile != null)
                 {
-                    string uploadsFolder = Path.Combine(_appEnvironment.WebRootPath, "Graphics", "Course");
+                    string uploadsFolder = Path.Combine(_appEnvironment.WebRootPath, "Graphics", "Course", course.Name);
                     string uniqueFileName = course.ImageFile.FileName;
                     string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                    if (!Directory.Exists(uploadsFolder))
+                    {
+                        Directory.CreateDirectory(uploadsFolder);
+                    }
+
                     using (var fileStream = new FileStream(filePath, FileMode.Create))
                     {
                         await course.ImageFile.CopyToAsync(fileStream);

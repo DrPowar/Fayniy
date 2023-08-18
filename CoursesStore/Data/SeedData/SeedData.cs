@@ -26,21 +26,42 @@ public static class SeedData
                 new Course
                 {
                     Name = "All in the world",
-                    Description = "Test description 1",
+                    Description = "All in the world project description",
                     Duration = TimeSpan.FromHours(2),
                     Price = 4.99m
                 },
                 new Course
                 {
                     Name = "Swipe",
-                    Description = "Test description 2",
+                    Description = "Swipe project description",
                     Duration = TimeSpan.FromHours(3),
                     Price = 5.99m
                 },
                 new Course
                 {
                     Name = "WITCHBLADES",
-                    Description = "Test description 3",
+                    Description = "WITCHBLADES project description",
+                    Duration = TimeSpan.FromHours(1.5),
+                    Price = 6.99m
+                },
+                new Course
+                {
+                    Name = "VFX",
+                    Description = "VFX pack description",
+                    Duration = TimeSpan.FromHours(1.5),
+                    Price = 6.99m
+                },
+                new Course
+                {
+                    Name = "SFX",
+                    Description = "SFX pack description",
+                    Duration = TimeSpan.FromHours(1.5),
+                    Price = 6.99m
+                },
+                new Course
+                {
+                    Name = "DarkLight",
+                    Description = "DarkLight project description",
                     Duration = TimeSpan.FromHours(1.5),
                     Price = 6.99m
                 }

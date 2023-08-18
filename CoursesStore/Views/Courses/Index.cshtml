@@ -44,7 +44,7 @@
                             <div class="card-hover">
                                 <div class="image-container">
                                     <a asp-controller="Courses" asp-action="Details" asp-route-id="@item.Id">
-                                        <img src="~/Graphics/Course/@(imageName).png" class="img-fluid" alt="Name">
+                                        <img src="~/Graphics/Course/@item.Name/@(imageName).png" class="img-fluid" alt="Name">
                                     </a>
                                 </div>
                             </div>
