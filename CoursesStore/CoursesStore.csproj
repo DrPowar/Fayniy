@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\css\Image\" />
+    <Folder Include="wwwroot\Graphics\Course\DarkLight\" />
   </ItemGroup>
 
 </Project>

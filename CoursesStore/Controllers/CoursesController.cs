@@ -70,22 +70,48 @@ namespace CoursesStore.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (course.ImageFile != null)
+                var graphics = new IFormFile[] { 
+                    course.PreviewImage, 
+                    course.MainVideo, 
+                    course.CardVideo, 
+                    course.BeforeExampleImage, 
+                    course.AfterExampleImage};
+
+                foreach (var item in graphics)
                 {
-                    string uploadsFolder = Path.Combine(_appEnvironment.WebRootPath, "Graphics", "Course", course.Name);
-                    string uniqueFileName = course.ImageFile.FileName;
-                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                    if (!Directory.Exists(uploadsFolder))
+                    if (item != null)
                     {
-                        Directory.CreateDirectory(uploadsFolder);
-                    }
+                        string uploadsFolder = Path.Combine(_appEnvironment.WebRootPath, "Graphics", "Course", course.Name);
+                        string uniqueFileName = item.FileName;
+                        string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await course.ImageFile.CopyToAsync(fileStream);
+                        if (!Directory.Exists(uploadsFolder))
+                        {
+                            Directory.CreateDirectory(uploadsFolder);
+                        }
+
+                        using (var fileStream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await item.CopyToAsync(fileStream);
+                        }
                     }
                 }
+                //if (course.PreviewImage != null)
+                //{
+                //    string uploadsFolder = Path.Combine(_appEnvironment.WebRootPath, "Graphics", "Course", course.Name);
+                //    string uniqueFileName = course.PreviewImage.FileName;
+                //    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                //    if (!Directory.Exists(uploadsFolder))
+                //    {
+                //        Directory.CreateDirectory(uploadsFolder);
+                //    }
+
+                //    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                //    {
+                //        await course.PreviewImage.CopyToAsync(fileStream);
+                //    }
+                //}
                 _context.Add(course);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

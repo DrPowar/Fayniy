@@ -28,8 +28,8 @@ namespace CoursesStore.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
 
-                    b.Property<TimeSpan>("Duration")
-                        .HasColumnType("time(6)");
+                    b.Property<int>("EffectCount")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -41,7 +41,7 @@ namespace CoursesStore.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Course", (string)null);
+                    b.ToTable("Course");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

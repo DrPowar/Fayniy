@@ -4,41 +4,59 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
-<h4>Course</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="row container-fluid">
+    <div class="col-md-5">
+        <h1>Create</h1>
         <form asp-action="Create" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @Html.AntiForgeryToken()
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label asp-for="Price" class="control-label"></label>
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Duration" class="control-label"></label>
-                <input asp-for="Duration" class="form-control" />
-                <span asp-validation-for="Duration" class="text-danger"></span>
+            <div class="form-group mb-3">
+                <label asp-for="EffectCount" class="control-label"></label>
+                <input asp-for="EffectCount" class="form-control" />
+                <span asp-validation-for="EffectCount" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label class="control-label">Course Image</label>
-                <input type="file" name="ImageFile" accept=".jpg, .jpeg, .png" />
+            <div class="form-group mb-3">
+                <label class="control-label">Preview Image</label>
+                <input type="file" name="PreviewImage" accept=".jpg, .jpeg, .png" />
                 <span class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
+                <label class="control-label">Main Video</label>
+                <input type="file" name="MainVideo" accept=".mp4" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label class="control-label">Card Video</label>
+                <input type="file" name="CardVideo" accept=".mp4" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label class="control-label">Before Example Image</label>
+                <input type="file" name="BeforeExampleImage" accept=".jpg, .jpeg, .png" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label class="control-label">After Example Image</label>
+                <input type="file" name="AfterExampleImage" accept=".jpg, .jpeg, .png" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
