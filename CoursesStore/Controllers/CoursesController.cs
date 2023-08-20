@@ -96,22 +96,6 @@ namespace CoursesStore.Controllers
                         }
                     }
                 }
-                //if (course.PreviewImage != null)
-                //{
-                //    string uploadsFolder = Path.Combine(_appEnvironment.WebRootPath, "Graphics", "Course", course.Name);
-                //    string uniqueFileName = course.PreviewImage.FileName;
-                //    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                //    if (!Directory.Exists(uploadsFolder))
-                //    {
-                //        Directory.CreateDirectory(uploadsFolder);
-                //    }
-
-                //    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                //    {
-                //        await course.PreviewImage.CopyToAsync(fileStream);
-                //    }
-                //}
                 _context.Add(course);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

@@ -8,6 +8,12 @@
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
+  <ItemGroup>
+    <Compile Remove="Views\Новая папка\**" />
+    <Content Remove="Views\Новая папка\**" />
+    <EmbeddedResource Remove="Views\Новая папка\**" />
+    <None Remove="Views\Новая папка\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
@@ -26,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Новая папка1\" />
     <Folder Include="wwwroot\css\Image\" />
     <Folder Include="wwwroot\Graphics\Course\DarkLight\" />
   </ItemGroup>

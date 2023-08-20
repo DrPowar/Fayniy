@@ -11,7 +11,7 @@
 </style>
 
 <div class="card border-0" style="background-color: #161a1e">
-    <video id="videoPlayer" src="~/Graphics/Course/Swipe/Swipe main video.mp4" muted loop autoplay class="card-img" style="max-height: 44vw; object-fit: cover;"></video>
+    <video id="videoPlayer" src="~/Graphics/Course/@Model.Name/MainVideo.mp4" muted loop autoplay class="card-img" style="max-height: 44vw; object-fit: cover;"></video>
     <div class="card-img-overlay h-75 text-light container d-flex flex-column justify-content-center video-items-div">
         <h1 class="fw-bold pt-5 display-6 text-center BLOCKBUSTER-EFFECTS-tag">@Model.Name.ToUpper() PROJECT EFFECTS PACK<br>FOR FILMMAKERS</h1>
     </div>
@@ -22,8 +22,7 @@
         <div class="">
             <div class="row g-0">
                 <div class="col-md-7 text-center d-flex align-items-center justify-content-center">
-                    @*<img class="d-block" src="~/Graphics/Course/Swipe_no_background - Copy.png" width="45%" alt="Name" style="min-width: 45%;">*@
-                    <video src="~/Graphics/Course/Swipe/Swipe.mp4" muted loop autoplay class="card-img" style="width: 100%;"></video>
+                    <video src="~/Graphics/Course/@Model.Name/CardVideo.mp4" muted loop autoplay class="card-img" style="width: 100%;"></video>
                 </div>
                 <div class="col-md-5">
                     <div class="card-body" style="margin-left: 5%;">
@@ -48,14 +47,14 @@
     <div class="row g-0 text-center m-auto p-5">
         <div class="col-md-5 text-center m-auto">
             <h3>Before</h3>
-            <img src="~/Graphics/Course/All in the world/All_in_the_world.png" class="img-fluid" alt="Name" />
+            <img src="~/Graphics/Course/@Model.Name/BeforeExampleImage.png" class="img-fluid" alt="Name" />
         </div>
         <div class="col-md-1 text-center m-auto">
             <img src="~/Graphics/Design/right arrow white.png" class="img-fluid" width="50%" alt=">>>"/>
         </div>
         <div class="col-md-5 text-center m-auto">
             <h3>After</h3>
-            <img src="~/Graphics/Course/All in the world/All_in_the_world.png" class="img-fluid" alt="Name" />
+            <img src="~/Graphics/Course/@Model.Name/AfterExampleImage.png" class="img-fluid" alt="Name" />
         </div>
     </div>
 </div>

@@ -47,13 +47,13 @@ public static class SeedData
                     EffectCount = 100,
                     Price = 6.99m
                 },
-                //new Course
-                //{
-                //    Name = "DarkLight",
-                //    Description = "DarkLight project description",
-                //    EffectCount = 100,
-                //    Price = 6.99m
-                //},
+                new Course
+                {
+                    Name = "DarkLight",
+                    Description = "DarkLight project description",
+                    EffectCount = 100,
+                    Price = 6.99m
+                },
                 new Course
                 {
                     Name = "SFX",
