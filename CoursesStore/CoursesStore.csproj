@@ -9,10 +9,10 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <ItemGroup>
-    <Compile Remove="Views\Новая папка\**" />
-    <Content Remove="Views\Новая папка\**" />
-    <EmbeddedResource Remove="Views\Новая папка\**" />
-    <None Remove="Views\Новая папка\**" />
+    <Compile Remove="Views\Новая папка1\**" />
+    <Content Remove="Views\Новая папка1\**" />
+    <EmbeddedResource Remove="Views\Новая папка1\**" />
+    <None Remove="Views\Новая папка1\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,7 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Новая папка1\" />
     <Folder Include="wwwroot\css\Image\" />
     <Folder Include="wwwroot\Graphics\Course\DarkLight\" />
   </ItemGroup>
