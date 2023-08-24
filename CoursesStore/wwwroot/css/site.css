@@ -114,5 +114,19 @@ body {
     transform: scale(1.2);
 }
 
+.accordion-item {
+    /* Стилі фону для акордеону */
+    background-color: #171a1e;
+}
+
+.accordion-button {
+    background-color: #171a1e;
+    color: #e2e3ea;
+}
+
+.accordion-collapse {
+    background-color: #171a1e;
+    color: #e2e3ea;
+}
 
 
