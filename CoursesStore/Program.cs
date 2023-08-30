@@ -6,6 +6,7 @@ using CoursesStore.Data;
 using CoursesStore.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.WebSockets;
+using CoursesStore.Services;
 
 namespace CoursesStore
 {
@@ -27,6 +28,8 @@ namespace CoursesStore
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<CoursesStoreContext>()
                 .AddDefaultTokenProviders();
+
+            builder.Services.AddTransient<IBraintreeService, BraintreeService>();
 
             builder.Services.ConfigureApplicationCookie(options =>
             {
