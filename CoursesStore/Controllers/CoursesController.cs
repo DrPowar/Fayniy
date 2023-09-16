@@ -1,5 +1,7 @@
-﻿using CoursesStore.Data;
+﻿using Braintree;
+using CoursesStore.Data;
 using CoursesStore.Models;
+using CoursesStore.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,11 +12,13 @@ namespace CoursesStore.Controllers
     {
         private readonly CoursesStoreContext _context;
         private readonly IWebHostEnvironment _appEnvironment;
+        private readonly IBraintreeService _braintreeService;
 
-        public CoursesController(CoursesStoreContext context, IWebHostEnvironment appEnvironment)
+        public CoursesController(CoursesStoreContext context, IWebHostEnvironment appEnvironment, IBraintreeService braintreeService)
         {
             _context = context;
             _appEnvironment = appEnvironment;
+            _braintreeService = braintreeService;
         }
 
         public async Task<IActionResult> Index(string searchString)
@@ -35,7 +39,62 @@ namespace CoursesStore.Controllers
             return View(await courses.ToListAsync());
         }
 
+        public async Task<IActionResult> PurchaseCreate(int id)
+        {
+            if (id == null || _context.Course == null)
+            {
+                return NotFound();
+            }
 
+            var gateway = _braintreeService.GetGateway();
+            var clientToken = gateway.ClientToken.Generate();
+            ViewBag.ClientToken = clientToken;
+
+            var course = await _context.Course.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            var coursePurchaseVM = new CoursePurchaseVM
+            {
+                Id = course.Id,
+                Name = course.Name,
+                Description = course.Description,
+                Price = course.Price,
+                EffectCount = course.EffectCount,
+                Nonce = ""
+            };
+
+            return View(coursePurchaseVM);
+        }
+
+        [HttpPost]
+        public IActionResult OrderProcessing(CoursePurchaseVM model)
+        {
+            var gateway = _braintreeService.GetGateway();
+            var request = new TransactionRequest
+            {
+                Amount = Convert.ToDecimal(model.Price),
+                PaymentMethodNonce = model.Nonce,
+                Options = new TransactionOptionsRequest
+                {
+                    SubmitForSettlement = true
+                }
+            };
+
+            Result<Transaction> result = gateway.Transaction.Sale(request);
+
+            if (result.IsSuccess())
+            {
+                return View("PurchaseSuccess");
+            }
+            else
+            {
+                return View("PurchaseFailure");
+            }
+        }
 
         // GET: Courses/Details/5
         public async Task<IActionResult> Details(int? id)
