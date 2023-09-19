@@ -26,11 +26,11 @@
                 </div>
                 <div class="col-md-5">
                     <div class="card-body" style="margin-left: 5%;">
-                        <h1 class="card-text">Swipe pack</h1>
-                        <h2>99.00$</h2>
+                        <h1 class="card-text">@Model.Name</h1>
+                        <h2>@Model.Price $</h2>
                         <a class="btn btn-outline-danger btn-lg w-50" asp-controller="Courses" asp-action="PurchaseCreate" asp-route-id="@Model.Id" role="button" style="margin-bottom: 5%;"> Buy</a>
-                        <p class="card-text"><b>Description: </b>A set of visual effects from the swipe project.</p>
-                        <p class="card-text"><b>Effects Count: </b>50</p>
+                        <p class="card-text"><b>Description: </b>@Model.Description</p>
+                        <p class="card-text"><b>Effects Count: </b>@Model.EffectCount</p>
                         <p class="card-text">
                     </div>
                 </div>
@@ -46,14 +46,14 @@
     <div class="row g-0 text-center m-auto p-5">
         <div class="col-md-5 text-center m-auto">
             <h3>Before</h3>
-            <img src="~/Graphics/Course/@Model.Name/BeforeExampleImage.png" class="img-fluid" alt="Name" />
+            <img src="~/Graphics/Course/@Model.Name/BeforeExample.png" class="img-fluid" alt="Name" />
         </div>
         <div class="col-md-1 text-center m-auto">
-            <img src="~/Graphics/Design/right arrow white.png" class="img-fluid" width="50%" alt=">>>"/>
+            <img src="~/Graphics/Design/right arrow white.png" class="img-fluid arrow-img" alt=">>>" />
         </div>
         <div class="col-md-5 text-center m-auto">
             <h3>After</h3>
-            <img src="~/Graphics/Course/@Model.Name/AfterExampleImage.png" class="img-fluid" alt="Name" />
+            <img src="~/Graphics/Course/@Model.Name/AfterExample.png" class="img-fluid" alt="Name" />
         </div>
     </div>
 </div>

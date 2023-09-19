@@ -22,6 +22,11 @@
             </div>
         </div>
         <form id="payment-form" method="post" asp-controller="Courses" asp-action="OrderProcessing">
+            @Html.HiddenFor(n => n.Id)
+            @Html.HiddenFor(n => n.Name)
+            @Html.HiddenFor(n => n.Description)
+            @Html.HiddenFor(n => n.EffectCount)
+            @Html.HiddenFor(n => n.Price)
             <section>
                 <div class="bt-drop-in-wrapper">
                     <div id="bt-dropin"></div>
@@ -29,6 +34,11 @@
             </section>
             @Html.HiddenFor(n => n.Nonce, new { @id = "nonce" })
             <hr />
+            <div class="form-group mb-3">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" required/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
             <button class="btn btn-success" type="submit"><span>Confirm payment - $@Model.Price</span></button>
         </form>
     </div>

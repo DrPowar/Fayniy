@@ -148,4 +148,13 @@ body {
     color: #e2e3ea;
 }
 
+.arrow-img {
+    width: 20%;
+    margin: 5% 0% 5% 0%;
+}
 
+@media (min-width: 768px) {
+    .arrow-img {
+        width: 50%;
+    }
+}

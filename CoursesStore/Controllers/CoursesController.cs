@@ -5,6 +5,8 @@ using CoursesStore.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
+using System.Net.Mail;
 
 namespace CoursesStore.Controllers
 {
@@ -64,7 +66,8 @@ namespace CoursesStore.Controllers
                 Description = course.Description,
                 Price = course.Price,
                 EffectCount = course.EffectCount,
-                Nonce = ""
+                Nonce = "",
+                Email = ""
             };
 
             return View(coursePurchaseVM);
@@ -76,7 +79,7 @@ namespace CoursesStore.Controllers
             var gateway = _braintreeService.GetGateway();
             var request = new TransactionRequest
             {
-                Amount = Convert.ToDecimal(model.Price),
+                Amount = Convert.ToDecimal(Convert.ToInt32(model.Price)),
                 PaymentMethodNonce = model.Nonce,
                 Options = new TransactionOptionsRequest
                 {
@@ -88,6 +91,8 @@ namespace CoursesStore.Controllers
 
             if (result.IsSuccess())
             {
+                EmailNewsletter.SendEmail("fayniystore16@gmail.com", "dgdd zwxv vkdj aeot", model.Email, model).GetAwaiter();
+
                 return View("PurchaseSuccess");
             }
             else
@@ -258,6 +263,29 @@ namespace CoursesStore.Controllers
         private bool CourseExists(int id)
         {
             return (_context.Course?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+
+        private class EmailNewsletter
+        {
+            public static async Task SendEmail(string fromString, string password, string toString, CoursePurchaseVM coursePurchaseVM)
+            {
+                MailAddress from = new MailAddress(fromString, "FayniyStore");
+                MailAddress to = new MailAddress(toString);
+                MailMessage m = new MailMessage(from, to);
+                m.Subject = "Посилання на товар";
+                m.Body = "Письмо-тест 2 работы smtp-клиента";
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                smtp.Credentials = new NetworkCredential(fromString, password);
+                smtp.EnableSsl = true;
+                try
+                {
+                    smtp.SendMailAsync(m);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+            }
         }
     }
 }
