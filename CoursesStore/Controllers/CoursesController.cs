@@ -15,12 +15,14 @@ namespace CoursesStore.Controllers
         private readonly CoursesStoreContext _context;
         private readonly IWebHostEnvironment _appEnvironment;
         private readonly IBraintreeService _braintreeService;
+        private readonly IConfiguration _config;
 
-        public CoursesController(CoursesStoreContext context, IWebHostEnvironment appEnvironment, IBraintreeService braintreeService)
+        public CoursesController(IConfiguration config, CoursesStoreContext context, IWebHostEnvironment appEnvironment, IBraintreeService braintreeService)
         {
             _context = context;
             _appEnvironment = appEnvironment;
             _braintreeService = braintreeService;
+            _config = config;
         }
 
         public async Task<IActionResult> Index(string searchString)
@@ -91,7 +93,7 @@ namespace CoursesStore.Controllers
 
             if (result.IsSuccess())
             {
-                EmailNewsletter.SendEmail("fayniystore16@gmail.com", "dgdd zwxv vkdj aeot", model.Email, model).GetAwaiter();
+                EmailNewsletter.SendEmail(_config.GetValue<string>("EmailConfig:FromAddress"), _config.GetValue<string>("EmailConfig:FromAppPassword"), model.Email, model).GetAwaiter();
 
                 return View("PurchaseSuccess");
             }
@@ -273,7 +275,7 @@ namespace CoursesStore.Controllers
                 MailAddress to = new MailAddress(toString);
                 MailMessage m = new MailMessage(from, to);
                 m.Subject = "Посилання на товар";
-                m.Body = "Письмо-тест 2 работы smtp-клиента";
+                m.Body = "Письмо-тест 2 работи smtp-клиента";
                 SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
                 smtp.Credentials = new NetworkCredential(fromString, password);
                 smtp.EnableSsl = true;
