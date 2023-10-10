@@ -11,13 +11,14 @@ public static class SeedData
             serviceProvider.GetRequiredService<
                 DbContextOptions<CoursesStoreContext>>()))
         {
-            context.Database.EnsureDeleted();
-            context.Database.EnsureCreated();
-
             if (context.Course.Any())
             {
                 return;   // DB has been seeded
             }
+
+            context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();
+
             context.Course.AddRange(
                 new Course
                 {
