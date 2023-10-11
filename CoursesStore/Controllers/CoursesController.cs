@@ -141,7 +141,8 @@ namespace CoursesStore.Controllers
                     course.MainVideo, 
                     course.CardVideo, 
                     course.BeforeExampleImage, 
-                    course.AfterExampleImage};
+                    course.AfterExampleImage
+                };
 
                 foreach (var item in graphics)
                 {
@@ -192,7 +193,7 @@ namespace CoursesStore.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,Duration")] Course course)
+        public async Task<IActionResult> Edit(int id, Course course)
         {
             if (id != course.Id)
             {
@@ -201,6 +202,35 @@ namespace CoursesStore.Controllers
 
             if (ModelState.IsValid)
             {
+
+                var graphics = new IFormFile[] {
+                    course.PreviewImage,
+                    course.MainVideo,
+                    course.CardVideo,
+                    course.BeforeExampleImage,
+                    course.AfterExampleImage
+                };
+
+                foreach (var item in graphics)
+                {
+                    if (item != null)
+                    {
+                        string uploadsFolder = Path.Combine(_appEnvironment.WebRootPath, "Graphics", "Course", course.Name);
+                        string uniqueFileName = item.FileName;
+                        string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                        if (!Directory.Exists(uploadsFolder))
+                        {
+                            Directory.CreateDirectory(uploadsFolder);
+                        }
+
+                        using (var fileStream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await item.CopyToAsync(fileStream);
+                        }
+                    }
+                }
+
                 try
                 {
                     _context.Update(course);
