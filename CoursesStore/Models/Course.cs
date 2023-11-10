@@ -21,6 +21,7 @@ namespace CoursesStore.Models
         [Range(1, 1000)]
         public int EffectCount { get; set; }
 
+
         //Зображення яке знаходиться на головній сторінці
         [Required]
         [NotMapped]
