@@ -1,16 +1,16 @@
-﻿@model CoursesStore.Models.LoginViewModel
+﻿@model CoursesStore.Models.RegisterViewModel
 
 @{
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = "Registration";
 }
 
-<div class="text-center col login-div" >
-    <form method="post" asp-controller="Account" asp-action="Login" clsdd="form-signin" class="login_form">
+<div class="text-center col login-div">
+    <form method="post" asp-controller="Account" asp-action="Register" clsdd="form-signin" class="login_form">
         <h1 style="display: inline">@ViewData["Title"]</h1>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
         <div class="form-floating mb-3">
-            <input asp-for="Name" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
+            <input asp-for="Name" class="form-control" autocomplete="name" aria-required="true" placeholder="name" />
             <label asp-for="Name" class="form-label">Name</label>
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
@@ -20,23 +20,12 @@
             <label asp-for="Password" class="form-label">Password</label>
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
-        <div class="checkbox mb-3">
-            <div class="row-cols-sm-2">
-                <label asp-for="RememberMe" class="form-label">
-                    <input class="form-check-input" asp-for="RememberMe" />
-                    @Html.DisplayNameFor(m => m.RememberMe)
-                </label>
-            </div>
-            <div class="row-cols-sm-2">
-                <h7>No account?</h7>
-                <a asp-action="Register" asp-controller="Account">Sign up</a>
-            </div>
-        </div>
         <div>
-            <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+            <button id="register-submit" type="submit" class="w-100 btn btn-lg btn-primary">Sign up</button>
         </div>
     </form>
 </div>
+
 
 <script>
         const togglePassword = document.querySelector("#togglePassword");
@@ -50,5 +39,4 @@
             // toggle the icon
             this.classList.toggle("bi-eye");
         });
-
     </script>

@@ -32,7 +32,7 @@
                         </li>
                     </ul>
                 </div>
-@*                 @if (User.Identity.IsAuthenticated)
+                @if (User.Identity.IsAuthenticated)
                 {
                     <div class="ml-auto">
 
@@ -41,7 +41,17 @@
                         </a>
 
                     </div>
-                } *@
+                }
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <div class="ml-auto">
+
+                        <a asp-controller="Account" asp-action="Login">
+                            <img class="user_info" src="~/Graphics/Design/7122339_user_circle_icon.png" />
+                        </a>
+
+                    </div>
+                }
             </nav>
         </div>
     </header>
