@@ -13,7 +13,7 @@
 <div class="card border-0" style="background-color: #161a1e">
     <video id="videoPlayer" src="~/Graphics/Course/@Model.Name/MainVideo.mp4" muted loop autoplay class="card-img" style="max-height: 44vw; object-fit: cover;"></video>
     <div class="card-img-overlay h-75 text-light container d-flex flex-column justify-content-center video-items-div">
-        <h1 class="fw-bold pt-5 display-6 text-center BLOCKBUSTER-EFFECTS-tag">@Model.Name.ToUpper() PROJECT EFFECTS PACK<br>FOR FILMMAKERS</h1>
+        <h1 class="fw-bold pt-5 display-6 text-center BLOCKBUSTER-EFFECTS-tag">@Model.Name.ToUpper() @LangLocalizer["PROJECT EFFECTS PACK"]<br>@LangLocalizer["FOR FILMMAKERS"]</h1>
     </div>
 </div>
 
@@ -28,9 +28,9 @@
                     <div class="card-body" style="margin-left: 5%;">
                         <h1 class="card-text">@Model.Name</h1>
                         <h2>@Model.Price $</h2>
-                        <a class="btn btn-outline-danger btn-lg w-50" asp-controller="Courses" asp-action="PurchaseCreate" asp-route-id="@Model.Id" role="button" style="margin-bottom: 5%;"> Buy</a>
-                        <p class="card-text"><b>Description: </b>@Model.Description</p>
-                        <p class="card-text"><b>Effects Count: </b>@Model.EffectCount</p>
+                        <a class="btn btn-outline-danger btn-lg w-50" asp-controller="Courses" asp-action="PurchaseCreate" asp-route-id="@Model.Id" role="button" style="margin-bottom: 5%;">@LangLocalizer["Buy"]</a>
+                        <p class="card-text"><b>@LangLocalizer["Description:"] </b>@Model.Description</p>
+                        <p class="card-text"><b>@LangLocalizer["Effects count:"] </b>@Model.EffectCount</p>
                         <p class="card-text">
                     </div>
                 </div>
@@ -41,7 +41,7 @@
 
 <div style="color: #e2e3ea; margin: 10% 0% 10% 0%;">
     <div class="container-fluid text-center m-auto p-3">
-        <h1>@Model.Name.ToUpper() EFFECTS EXAMPLES</h1>
+        <h1>@Model.Name.ToUpper() @LangLocalizer["EFFECTS EXAMPLES"]</h1>
     </div>
     <div class="row g-0 text-center m-auto p-5">
         <div id="before-after-slider">
@@ -79,16 +79,16 @@
     <div class="accordion-item">
         <h2 class="accordion-header" id="flush-headingOne">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                How do I Use the Overlays?
+                @LangLocalizer["How do I Use the Overlays?"]
             </button>
         </h2>
         <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
             <div class="accordion-body">
-                <p>
-                    To use overlays, simply import them into your video software the same way you import any video footage. Then place the selected overlay above your shot in your timeline.
+                <p>                    
+                    @LangLocalizer["To use overlays, simply import them into your video software the same way you import any video footage. Then place the selected overlay above your shot in your timeline."]
                 </p>
                 <p>
-                    To get rid of the black background, simply change the blending mode of the selected overlay. Every video software has a blending mode option (the blending mode is basically how two layers are blended with each other). Use the "Screen" blending mode to get the best results.
+                    @LangLocalizer["To get rid of the black background, simply change the blending mode of the selected overlay. Every video software has a blending mode option (the blending mode is basically how two layers are blended with each other). Use the Screen blending mode to get the best results."]
                 </p>
             </div>
         </div>
@@ -96,16 +96,16 @@
     <div class="accordion-item">
         <h2 class="accordion-header" id="flush-headingTwo">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                Do Overlays work with my Video Software?
+                @LangLocalizer["Do Overlays work with my Video Software?"]
             </button>
         </h2>
         <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
             <div class="accordion-body">
                 <p>
-                    Overlays works with almost every video software available on the market. Our overlays are MOV and MP4 files compressed with a Prores codec, which makes them almost universally compatible. Keep in mind, that our pack is made to be used on a computer. But It is also designed to be used with your mobile phone or tablet.
+                    @LangLocalizer["Overlays works with almost every video software available on the market. Our overlays are MOV and MP4 files compressed with a Prores codec, which makes them almost universally compatible. Keep in mind, that our pack is made to be used on a computer. But It is also designed to be used with your mobile phone or tablet."]
                 </p>
                 <p>
-                    If you're working with Adobe Premier Pro, Final Cut Pro, Adobe After Effects, DaVinci Resolve, Sony Vegas Pro, or even mobile soft like Alight Motion, Kine Master, CapCut and other - overlays pack will work perfectly with your software.
+                    @LangLocalizer["If you're working with Adobe Premier Pro, Final Cut Pro, Adobe After Effects, DaVinci Resolve, Sony Vegas Pro, or even mobile soft like Alight Motion, Kine Master, CapCut and other - overlays pack will work perfectly with your software."]
                 </p>
             </div>
         </div>
@@ -113,13 +113,13 @@
     <div class="accordion-item">
         <h2 class="accordion-header" id="flush-headingThree">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                Can I Purchase vfx pack with my Mobile Phone?
+                @LangLocalizer["Can I Purchase vfx pack with my Mobile Phone?"]
             </button>
         </h2>
         <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
             <div class="accordion-body">
                 <p>
-                    Of course. You can buy the product using your mobile phone or your tablet and download it later on your computer. We send a permanent link to your email address so you can download the product anytime. But remember that each package is designed to be used on a specific device. You won't be able to use the effects for a PC on a mobile phone or tablet.
+                    @LangLocalizer["Of course. You can buy the product using your mobile phone or your tablet and download it later on your computer. We send a permanent link to your email address so you can download the product anytime. But remember that each package is designed to be used on a specific device. You won't be able to use the effects for a PC on a mobile phone or tablet."]
                 </p>
             </div>
         </div>
@@ -127,13 +127,13 @@
     <div class="accordion-item">
         <h2 class="accordion-header" id="flush-headingFour">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-                How do I Use the Sound Assets?
+                @LangLocalizer["How do I Use the Sound Assets?"]
             </button>
         </h2>
         <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
             <div class="accordion-body">
                 <p>
-                    To use the sound assets, simply import the WAV or MP3 files into your editing software the same way you import any video/audio media. Then place the selected audio asset below your shot in your timeline in the dedicated audio track.
+                    @LangLocalizer["To use the sound assets, simply import the WAV or MP3 files into your editing software the same way you import any video/audio media. Then place the selected audio asset below your shot in your timeline in the dedicated audio track."]
                 </p>
             </div>
         </div>
@@ -141,22 +141,22 @@
     <div class="accordion-item">
         <h2 class="accordion-header" id="flush-headingFive">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
-                What hardware would be optimal for the job?
+                @LangLocalizer["What hardware would be optimal for the job?"]
             </button>
         </h2>
         <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
             <div class="accordion-body">
                 <p>
-                    Windows 10/Apple macOS 10.12
+                    @LangLocalizer["Windows 10/Apple macOS 10.12"]
                 </p>
                 <p>
-                    Processor: Intel Core i5/i7, Amd FX/Ryzen
+                    @LangLocalizer["Processor: Intel Core i5/i7, Amd FX/Ryzen"]
                 </p>
                 <p>
-                    RAM: 8 GB
+                    @LangLocalizer["RAM: 8 GB"]
                 </p>
                 <p>
-                    ﻿Video card: Nvidia or AMD with 4 GB of video memory.
+                    @LangLocalizer["Video card: Nvidia or AMD with 4 GB of video memory."]
                 </p>
             </div>
         </div>

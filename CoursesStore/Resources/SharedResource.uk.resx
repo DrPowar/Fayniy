@@ -117,7 +117,94 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>Про нас</value>
+  </data>
   <data name="BLOCKBUSTER EFFECTS" xml:space="preserve">
     <value>ЕФЕКТИ БЛОКБАСТЕРА</value>
+  </data>
+  <data name="Buy" xml:space="preserve">
+    <value>ПРИДБАТИ</value>
+  </data>
+  <data name="Can I Purchase vfx pack with my Mobile Phone?" xml:space="preserve">
+    <value>Чи можу я придбати пакет vfx за допомогою свого мобільного телефону?</value>
+  </data>
+  <data name="Contact information:" xml:space="preserve">
+    <value>Зв'язатися з нами</value>
+  </data>
+  <data name="Description:" xml:space="preserve">
+    <value>Опис:</value>
+  </data>
+  <data name="Do Overlays work with my Video Software?" xml:space="preserve">
+    <value>Чи працюють накладання з моїм програмним забезпеченням для відео?</value>
+  </data>
+  <data name="Effects count:" xml:space="preserve">
+    <value>Кількість ефектів:</value>
+  </data>
+  <data name="EFFECTS EXAMPLES" xml:space="preserve">
+    <value>ПРИКЛАДИ ЕФЕКТІВ</value>
+  </data>
+  <data name="FOR FILMMAKERS" xml:space="preserve">
+    <value>ДЛЯ КІНОРЕЖИСЕРІВ</value>
+  </data>
+  <data name="How do I Use the Overlays?" xml:space="preserve">
+    <value>Як використовувати накладки?</value>
+  </data>
+  <data name="How do I Use the Sound Assets?" xml:space="preserve">
+    <value>Як використовувати звукові ресурси?</value>
+  </data>
+  <data name="If you're working with Adobe Premier Pro, Final Cut Pro, Adobe After Effects, DaVinci Resolve, Sony Vegas Pro, or even mobile soft like Alight Motion, Kine Master, CapCut and other - overlays pack will work perfectly with your software." xml:space="preserve">
+    <value>Якщо ви працюєте з Adobe Premier Pro, Final Cut Pro, Adobe After Effects, DaVinci Resolve, Sony Vegas Pro або навіть програмним забезпеченням для мобільних пристроїв, таким як Alight Motion, Kine Master, CapCut та іншим, пакет накладень ідеально працюватиме з вашим програмним забезпеченням.</value>
+  </data>
+  <data name="Make Order" xml:space="preserve">
+    <value>Зробити замовлення</value>
+  </data>
+  <data name="Of course. You can buy the product using your mobile phone or your tablet and download it later on your computer. We send a permanent link to your email address so you can download the product anytime. But remember that each package is designed to be used on a specific device. You won't be able to use the effects for a PC on a mobile phone or tablet." xml:space="preserve">
+    <value>Звичайно. Ви можете придбати продукт за допомогою мобільного телефону або планшета та завантажити його пізніше на свій комп’ютер. Ми надсилаємо постійне посилання на вашу електронну адресу, щоб ви могли будь-коли завантажити продукт. Але пам’ятайте, що кожен пакет призначений для використання на певному пристрої. Ви не зможете використовувати ефекти для ПК на мобільному телефоні чи планшеті.</value>
+  </data>
+  <data name="Overlays works with almost every video software available on the market. Our overlays are MOV and MP4 files compressed with a Prores codec, which makes them almost universally compatible. Keep in mind, that our pack is made to be used on a computer. But It is also designed to be used with your mobile phone or tablet." xml:space="preserve">
+    <value>Оверлеї працюють майже з усім програмним забезпеченням для відео, доступним на ринку. Наші накладення — це файли MOV і MP4, стиснуті за допомогою кодека Prores, що робить їх майже універсальними. Майте на увазі, що наш пакет створено для використання на комп’ютері. Але він також розроблений для використання з вашим мобільним телефоном або планшетом.</value>
+  </data>
+  <data name="Privacy policy" xml:space="preserve">
+    <value>Політика конфіденційності</value>
+  </data>
+  <data name="Processor: Intel Core i5/i7, Amd FX/Ryzen" xml:space="preserve">
+    <value>Процесор: Intel Core i5/i7, Amd FX/Ryzen</value>
+  </data>
+  <data name="PROJECT EFFECTS PACK" xml:space="preserve">
+    <value>ПАКЕТ ЕФЕКТІВ ПРОЕКТУ</value>
+  </data>
+  <data name="RAM: 8 GB" xml:space="preserve">
+    <value>Оперативна пам'ять: 8 Гб</value>
+  </data>
+  <data name="Refound policy" xml:space="preserve">
+    <value>Політика відшкодування</value>
+  </data>
+  <data name="Section" xml:space="preserve">
+    <value>Секція</value>
+  </data>
+  <data name="Terms of Service" xml:space="preserve">
+    <value>Умови використання</value>
+  </data>
+  <data name="To get rid of the black background, simply change the blending mode of the selected overlay. Every video software has a blending mode option (the blending mode is basically how two layers are blended with each other). Use the Screen blending mode to get the best results." xml:space="preserve">
+    <value>Щоб позбутися чорного фону, просто змініть режим змішування вибраного накладання. Кожне програмне забезпечення для відео має опцію режиму змішування (режим змішування – це, по суті, як два шари змішуються один з одним). Використовуйте режим змішування \"Екран\", щоб отримати найкращі результати.</value>
+  </data>
+  <data name="To use overlays, simply import them into your video software the same way you import any video footage. Then place the selected overlay above your shot in your timeline." xml:space="preserve">
+    <value>Щоб використовувати накладення, просто імпортуйте їх у програмне забезпечення для відео так само, як імпортуєте будь-який відеоматеріал. Потім розмістіть вибране накладання над знімком на часовій шкалі.</value>
+  </data>
+  <data name="To use the sound assets, simply import the WAV or MP3 files into your editing software the same way you import any video/audio media. Then place the selected audio asset below your shot in your timeline in the dedicated audio track." xml:space="preserve">
+    <value>Щоб використовувати звукові ресурси, просто імпортуйте файли WAV або MP3 у програмне забезпечення для редагування так само, як ви імпортуєте будь-які відео/аудіо носії. Потім розмістіть вибраний аудіоресурс під знімком на часовій шкалі у виділеній звуковій доріжці.</value>
+  </data>
+  <data name="Video card: Nvidia or AMD with 4 GB of video memory." xml:space="preserve">
+    <value>Відеокарта: Nvidia або AMD з 4 ГБ відеопам'яті.</value>
+  </data>
+  <data name="What hardware would be optimal for the job?" xml:space="preserve">
+    <value>Яке апаратне забезпечення було б оптимальним для роботи?</value>
+  </data>
+  <data name="Windows 10/Apple macOS 10.12" xml:space="preserve">
+    <value>Windows 10/Apple macOS 10.12</value>
+  </data>
+  <data name="© 2023 Company, Inc. All rights reserved." xml:space="preserve">
+    <value>© 2023 Company, Inc. Усі права захищено.</value>
   </data>
 </root>

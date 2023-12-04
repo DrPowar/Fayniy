@@ -117,7 +117,94 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
   <data name="BLOCKBUSTER EFFECTS" xml:space="preserve">
     <value>BLOCKBUSTER EFFECTS</value>
+  </data>
+  <data name="Buy" xml:space="preserve">
+    <value>BUY</value>
+  </data>
+  <data name="Can I Purchase vfx pack with my Mobile Phone?" xml:space="preserve">
+    <value>Can I Purchase vfx pack with my Mobile Phone?</value>
+  </data>
+  <data name="Contact information:" xml:space="preserve">
+    <value>Contact information:</value>
+  </data>
+  <data name="Description:" xml:space="preserve">
+    <value>Description:</value>
+  </data>
+  <data name="Do Overlays work with my Video Software?" xml:space="preserve">
+    <value>Do Overlays work with my Video Software?</value>
+  </data>
+  <data name="Effects count:" xml:space="preserve">
+    <value>Effects count:</value>
+  </data>
+  <data name="EFFECTS EXAMPLES" xml:space="preserve">
+    <value>EFFECTS EXAMPLES</value>
+  </data>
+  <data name="FOR FILMMAKERS" xml:space="preserve">
+    <value>FOR FILMMAKERS</value>
+  </data>
+  <data name="How do I Use the Overlays?" xml:space="preserve">
+    <value>How do I Use the Overlays?</value>
+  </data>
+  <data name="How do I Use the Sound Assets?" xml:space="preserve">
+    <value>How do I Use the Sound Assets?</value>
+  </data>
+  <data name="If you're working with Adobe Premier Pro, Final Cut Pro, Adobe After Effects, DaVinci Resolve, Sony Vegas Pro, or even mobile soft like Alight Motion, Kine Master, CapCut and other - overlays pack will work perfectly with your software." xml:space="preserve">
+    <value>If you're working with Adobe Premier Pro, Final Cut Pro, Adobe After Effects, DaVinci Resolve, Sony Vegas Pro, or even mobile soft like Alight Motion, Kine Master, CapCut and other - overlays pack will work perfectly with your software.</value>
+  </data>
+  <data name="Make Order" xml:space="preserve">
+    <value>Make Order</value>
+  </data>
+  <data name="Of course. You can buy the product using your mobile phone or your tablet and download it later on your computer. We send a permanent link to your email address so you can download the product anytime. But remember that each package is designed to be used on a specific device. You won't be able to use the effects for a PC on a mobile phone or tablet." xml:space="preserve">
+    <value>Of course. You can buy the product using your mobile phone or your tablet and download it later on your computer. We send a permanent link to your email address so you can download the product anytime. But remember that each package is designed to be used on a specific device. You won't be able to use the effects for a PC on a mobile phone or tablet.</value>
+  </data>
+  <data name="Overlays works with almost every video software available on the market. Our overlays are MOV and MP4 files compressed with a Prores codec, which makes them almost universally compatible. Keep in mind, that our pack is made to be used on a computer. But It is also designed to be used with your mobile phone or tablet." xml:space="preserve">
+    <value>Overlays works with almost every video software available on the market. Our overlays are MOV and MP4 files compressed with a Prores codec, which makes them almost universally compatible. Keep in mind, that our pack is made to be used on a computer. But It is also designed to be used with your mobile phone or tablet.</value>
+  </data>
+  <data name="Privacy policy" xml:space="preserve">
+    <value>Privacy policy</value>
+  </data>
+  <data name="Processor: Intel Core i5/i7, Amd FX/Ryzen" xml:space="preserve">
+    <value>Processor: Intel Core i5/i7, Amd FX/Ryzen</value>
+  </data>
+  <data name="PROJECT EFFECTS PACK" xml:space="preserve">
+    <value>PROJECT EFFECTS PACK</value>
+  </data>
+  <data name="RAM: 8 GB" xml:space="preserve">
+    <value>RAM: 8 GB</value>
+  </data>
+  <data name="Refound policy" xml:space="preserve">
+    <value>Refound policy</value>
+  </data>
+  <data name="Section" xml:space="preserve">
+    <value>Section</value>
+  </data>
+  <data name="Terms of Service" xml:space="preserve">
+    <value>Terms of Service</value>
+  </data>
+  <data name="To get rid of the black background, simply change the blending mode of the selected overlay. Every video software has a blending mode option (the blending mode is basically how two layers are blended with each other). Use the Screen blending mode to get the best results." xml:space="preserve">
+    <value>To get rid of the black background, simply change the blending mode of the selected overlay. Every video software has a blending mode option (the blending mode is basically how two layers are blended with each other). Use the \"Screen\" blending mode to get the best results.</value>
+  </data>
+  <data name="To use overlays, simply import them into your video software the same way you import any video footage. Then place the selected overlay above your shot in your timeline." xml:space="preserve">
+    <value>To use overlays, simply import them into your video software the same way you import any video footage. Then place the selected overlay above your shot in your timeline.</value>
+  </data>
+  <data name="To use the sound assets, simply import the WAV or MP3 files into your editing software the same way you import any video/audio media. Then place the selected audio asset below your shot in your timeline in the dedicated audio track." xml:space="preserve">
+    <value>To use the sound assets, simply import the WAV or MP3 files into your editing software the same way you import any video/audio media. Then place the selected audio asset below your shot in your timeline in the dedicated audio track.</value>
+  </data>
+  <data name="Video card: Nvidia or AMD with 4 GB of video memory." xml:space="preserve">
+    <value>Video card: Nvidia or AMD with 4 GB of video memory.</value>
+  </data>
+  <data name="What hardware would be optimal for the job?" xml:space="preserve">
+    <value>What hardware would be optimal for the job?</value>
+  </data>
+  <data name="Windows 10/Apple macOS 10.12" xml:space="preserve">
+    <value>Windows 10/Apple macOS 10.12</value>
+  </data>
+  <data name="© 2023 Company, Inc. All rights reserved." xml:space="preserve">
+    <value>© 2023 Company, Inc. All rights reserved.</value>
   </data>
 </root>
