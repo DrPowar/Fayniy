@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 
+<script src="https://cdn.jsdelivr.net/npm/three@0.146/build/three.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.146/examples/js/controls/OrbitControls.js"></script>
 <body>
     <header class="custom-header">
         <div class="container-fluid px-lg-5 px-sm-2">
@@ -110,5 +112,256 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+	const canvasContainer = document.getElementById('bubleModel');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(
+      50,
+      canvasContainer.offsetWidth / canvasContainer.offsetHeight,
+      0.1,
+      1000
+    );
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(canvasContainer.offsetWidth, canvasContainer.offsetHeight);
+	  renderer.setClearColor( 0x000000, 0 ); // the default
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.1;
+    canvasContainer.appendChild(renderer.domElement);
+
+    const bondaries = 3;
+    const balls = [];
+    const numBigBalls = 3; // 4
+    const numSmallBalls = 20; // 40
+    const numMicroBalls0 = 50; // 150
+    const numMicroBalls1 = 50; // 150
+    const numMicroBalls2 = 50; // 150
+
+    const bigBallSize = 1.7; // 2
+    const smallBallSize = 1; // 1
+    const microBallSize0 = 0.25; // 0.25
+    const microBallSize1 = 0.15; // 0.15
+    const microBallSize2 = 0.05; // 0.05
+
+    const bigBallSphereRange = [0, 2];
+    const smallBallSphereRange = [2, 2.5];
+    const microBallSphereRange0 = [2, 3];
+    const microBallSphereRange1 = [2, 3];
+    const microBallSphereRange2 = [2, 3];
+
+    let ballColor = 0x333333;
+    // ballColor = 0x000000;
+    ballColor = 0x555555;
+    const ballOpacity = 0.96;
+    const ballRoughness = 0.2;
+    const ballMetalness = 0.8;
+    let bigBallColor = ballColor;
+    let smallBallColor = ballColor;
+    let microBallColor = ballColor;
+
+    const ballSpecular = 0x888888;
+    const ballShininess = 20;
+    const maxSpeed = 0.00375;
+
+    let hoverTimeout;
+
+    createBalls(bigBallSize, numBigBalls, bigBallColor, bigBallSphereRange, 64);
+    createBalls(smallBallSize, numSmallBalls, smallBallColor, smallBallSphereRange, 32);
+    createBalls(microBallSize0, numMicroBalls0, microBallColor, microBallSphereRange0, 16);
+    createBalls(microBallSize1, numMicroBalls1, microBallColor, microBallSphereRange1, 16);
+    createBalls(microBallSize2, numMicroBalls2, microBallColor, microBallSphereRange2, 16);
+    
+
+    // Light
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+    dirLight.position.set(10, 100, 10).normalize();
+    const pointLight = new THREE.PointLight(0xffffff, 0.4, 8);
+    pointLight.position.set(-7, 0, 7);
+    scene.add(pointLight);
+    scene.add(dirLight);
+
+    // Controls
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.maxPolarAngle = Math.PI / 2;
+    controls.minPolarAngle = Math.PI / 2.5;
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.01;
+    controls.enablePan = false;
+    controls.enableZoom = false;
+    controls.autoRotate = false; 
+    controls.autoRotateSpeed = -0.5;
+
+    // Changing the direction of movement when hovering
+    function onMouseMove1(event) {
+      const mouseVector = new THREE.Vector2();
+      mouseVector.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouseVector.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      const raycaster = new THREE.Raycaster();
+      raycaster.setFromCamera(mouseVector, camera);
+      const intersects = raycaster.intersectObjects(balls);
+      if (intersects.length > 0) {
+        const ball = intersects[0].object;
+        ball.velocity.multiplyScalar(-3);
+        controls.autoRotateSpeed = controls.autoRotateSpeed * (-1);
+      }
+    }
+
+    function onMouseMove(event) {
+      clearTimeout(hoverTimeout);
+
+      const mouseVector = new THREE.Vector2();
+      mouseVector.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouseVector.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      const raycaster = new THREE.Raycaster();
+      raycaster.setFromCamera(mouseVector, camera);
+      const intersects = raycaster.intersectObjects(balls);
+      if (intersects.length > 0) {
+        const ball = intersects[0].object;
+        ball.velocity.multiplyScalar(-5);
+        controls.autoRotateSpeed = controls.autoRotateSpeed * -1;
+
+        
+        hoverTimeout = setTimeout(() => {
+          ball.velocity.multiplyScalar(-5);
+          controls.autoRotateSpeed = controls.autoRotateSpeed * -1;
+        }, 500);
+      }
+    }
+
+
+    window.addEventListener("mousemove", onMouseMove, false);
+
+    // Random movements and collision handling
+    function updateBalls1() {
+      for (let i = 0; i < balls.length; i++) {
+        const ball = balls[i];
+        if (!ball.velocity) {
+          ball.velocity = new THREE.Vector3(
+            Math.random() * 2 - 1,
+            Math.random() * 2 - 1,
+            Math.random() * 2 - 1
+          ).normalize();
+        }
+        
+        // Repulsive from the boundaries of Canvas
+        if (
+          ball.position.x < -bondaries ||
+          ball.position.x > bondaries ||
+          ball.position.y < -bondaries ||
+          ball.position.y > bondaries ||
+          ball.position.z < -bondaries ||
+          ball.position.z > bondaries
+        ) {
+          ball.velocity.multiplyScalar(-1);
+        }
+
+        // Updating the position
+        ball.position.add(ball.velocity);
+
+        // Speed вЂ‹вЂ‹limit
+        if (ball.geometry.parameters.radius === bigBallSize) {
+          ball.velocity.clampLength(0, maxSpeed / 6);
+        } else if (ball.geometry.parameters.radius === smallBallSize) {
+          ball.velocity.clampLength(0, maxSpeed / 4);
+        } else {
+          ball.velocity.clampLength(0, maxSpeed);
+        }
+      }
+    }
+
+function updateBalls() {
+  for (let i = 0; i < balls.length; i++) {
+    const ball = balls[i];
+    
+    // Initialize velocity if not present
+    if (!ball.velocity) {
+      ball.velocity = new THREE.Vector3(
+        Math.random() * 2 - 1,
+        Math.random() * 2 - 1,
+        Math.random() * 2 - 1
+      ).normalize();
+    }
+
+    // Repulsive from the boundaries of Canvas
+    if (
+      ball.position.x - ball.geometry.parameters.radius < -bondaries ||
+      ball.position.x + ball.geometry.parameters.radius > bondaries
+    ) {
+      ball.velocity.x *= -1;
+    }
+    if (
+      ball.position.y - ball.geometry.parameters.radius < -bondaries ||
+      ball.position.y + ball.geometry.parameters.radius > bondaries
+    ) {
+      ball.velocity.y *= -1;
+    }
+    if (
+      ball.position.z - ball.geometry.parameters.radius < -bondaries ||
+      ball.position.z + ball.geometry.parameters.radius > bondaries
+    ) {
+      ball.velocity.z *= -1;
+    }
+
+    // Update position based on velocity
+    ball.position.add(ball.velocity);
+
+    // Speed вЂ‹вЂ‹limit
+    if (ball.geometry.parameters.radius === bigBallSize) {
+      ball.velocity.clampLength(0, maxSpeed / 6);
+    } else if (ball.geometry.parameters.radius === smallBallSize) {
+      ball.velocity.clampLength(0, maxSpeed / 4);
+    } else {
+      ball.velocity.clampLength(0, maxSpeed);
+    }
+  }
+}
+
+
+
+    function animate() {
+      requestAnimationFrame(animate);
+      updateBalls();
+      controls.update();
+	//   window.addEventListener('resize', function() {
+	// 	renderer.setSize($(canvasContainer).width(), $(canvasContainer).height());
+	//   })
+      renderer.render(scene, camera);
+    }
+ 
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    function createBalls(ballSize, numBalls, ballColor, ballSphereRange, segm = 32) {
+      const a = ballSphereRange[0];
+      const b = ballSphereRange[1];
+      let i = 0;
+      while (i < numBalls) {
+        const x = (2 * Math.random() - 1) * b;
+        const y = (2 * Math.random() - 1) * b;
+        const z = (2 * Math.random() - 1) * b;
+        const radiusSquared = x * x + y * y + z * z;
+        if (radiusSquared >= a * a && radiusSquared <= b * b) {
+          const ballGeometry = new THREE.SphereGeometry(ballSize, segm, segm);
+          const ballMaterial = new THREE.MeshPhongMaterial({
+            color: ballColor,
+            specular: ballSpecular,
+            shininess: ballShininess,
+            opacity: ballOpacity,
+            transparent: true,
+            // roughness: ballRoughness,
+            // metalness: ballMetalness,
+          });
+          const ball = new THREE.Mesh(ballGeometry, ballMaterial);
+          ball.position.set(x, y, z);
+          scene.add(ball);
+          balls.push(ball);
+          i++;
+        }
+      }
+    }
+
+    camera.position.z = 12;
+    animate();
+</script>
 </body>
 </html>
