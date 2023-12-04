@@ -3,6 +3,7 @@ using CoursesStore.Data;
 using CoursesStore.Models;
 using CoursesStore.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
@@ -23,6 +24,18 @@ namespace CoursesStore.Controllers
             _appEnvironment = appEnvironment;
             _braintreeService = braintreeService;
             _config = config;
+        }
+
+        [HttpPost]
+        public IActionResult SetLanguage(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+            );
+
+            return LocalRedirect(returnUrl);
         }
 
         public async Task<IActionResult> Index(string searchString)

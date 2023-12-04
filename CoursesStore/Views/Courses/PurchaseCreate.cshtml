@@ -18,7 +18,7 @@
                 @{
                     string imageName = @Model.Name.Replace(" ", "_");
                 }
-                <img src="~/Graphics/Course/@Model.Name/@(imageName).png" class="img-fluid buy-img" width="100%" alt="Name">
+                <img src="~/Graphics/Course/@Model.Name/PreviewImage.png" class="img-fluid buy-img" width="100%" alt="Name">
             </div>
         </div>
         <form id="payment-form" method="post" asp-controller="Courses" asp-action="OrderProcessing">

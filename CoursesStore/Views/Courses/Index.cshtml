@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<CoursesStore.Models.Course>
-
+@inject IViewLocalizer Localizer
 
 @{
     ViewData["Title"] = "List of Courses";
@@ -10,7 +10,7 @@
     <div class="card text-bg-dark border-0">
         <video src="~/Graphics/Design/videoplayback.mp4" muted autoplay loop class="card-img rounded-0"></video>
         <div class="card-img-overlay h-75 text-light container d-flex flex-column justify-content-center video-items-div">
-            <h2 class="fw-bold pt-5 display-6 text-center BLOCKBUSTER-EFFECTS-tag">BLOCKBUSTER EFFECTS<br>FOR FILMMAKERS</h2>
+            <h2 class="fw-bold pt-5 display-6 text-center BLOCKBUSTER-EFFECTS-tag">@LangLocalizer["BLOCKBUSTER EFFECTS"]<br>@LangLocalizer["FOR FILMMAKERS"]</h2>
             <div class="buttons d-flex justify-content-center">
                 <a class="btn btn-outline-light btn-lg" href="#" role="button"> Make Order</a>
             </div>

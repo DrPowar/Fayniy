@@ -1,3 +1,4 @@
+using System.Globalization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,8 @@ using CoursesStore.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.WebSockets;
 using CoursesStore.Services;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace CoursesStore
 {
@@ -40,14 +43,33 @@ namespace CoursesStore
                 options.SlidingExpiration = true;
             });
 
+            builder.Services.AddControllersWithViews()
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+                .AddDataAnnotationsLocalization(options => {
+                    options.DataAnnotationLocalizerProvider = (type, factory) =>
+                        factory.Create(typeof(SharedResource));
+                });
+
+            builder.Services.AddLocalization(options => { options.ResourcesPath = "Resources"; });
+            builder.Services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[]
+                {
+                    new CultureInfo("en"),
+                    new CultureInfo("uk"),
+                };
+                options.DefaultRequestCulture = new RequestCulture("en");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+            });
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
 
             builder.Services.AddHttpContextAccessor();
-            builder.Services.AddRazorPages();
 
             var app = builder.Build();
+
+            app.UseRequestLocalization();
 
             using (var scope = app.Services.CreateScope())
             {
@@ -75,44 +97,6 @@ namespace CoursesStore
                 name: "default",
                 pattern: "{controller=Courses}/{action=Index}/{id?}");
             app.MapRazorPages();
-
-            app.UseRequestLocalization("uk-UA");
-
-            using (var scope = app.Services.CreateScope())
-            {
-                var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
-                var roles = new[] { "Admin", "User" };
-
-                foreach (var role in roles)
-                {
-                    if (!await roleManager.RoleExistsAsync(role))
-                    {
-                        await roleManager.CreateAsync(new IdentityRole(role));
-                    }
-                }
-            }
-
-            using (var scope = app.Services.CreateScope())
-            {
-                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-
-                string name = "admin";
-
-                string password = "Admin1234.";
-
-                if(await userManager.FindByNameAsync(name) == null)
-                {
-                    var user = new ApplicationUser();
-                    user.UserName = name;
-                    user.Password = password;
-                    user.EmailConfirmed = true;
-
-                    await userManager.CreateAsync(user, password);
-
-                    userManager.AddToRoleAsync(user, "Admin");
-                }
-            }
 
             app.Run();
         }
